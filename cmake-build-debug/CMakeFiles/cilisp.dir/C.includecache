@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/bison-flex-output/parser.h
+
+/mnt/c/Users/aaron/Documents/School/Spring 2021/Computer Science 232/Lab/cilisp-AaronUrrea/src/cilisp.c
+cilisp.h
+/mnt/c/Users/aaron/Documents/School/Spring 2021/Computer Science 232/Lab/cilisp-AaronUrrea/src/cilisp.h
+
+/mnt/c/Users/aaron/Documents/School/Spring 2021/Computer Science 232/Lab/cilisp-AaronUrrea/src/cilisp.h
+stdio.h
+-
+stdlib.h
+-
+stdarg.h
+-
+string.h
+-
+math.h
+-
+stdbool.h
+-
+parser.h
+/mnt/c/Users/aaron/Documents/School/Spring 2021/Computer Science 232/Lab/cilisp-AaronUrrea/src/parser.h
+

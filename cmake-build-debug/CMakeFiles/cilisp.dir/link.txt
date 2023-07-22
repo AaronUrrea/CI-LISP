@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/cilisp.dir/src/cilisp.c.o CMakeFiles/cilisp.dir/src/bison-flex-output/lexer.c.o CMakeFiles/cilisp.dir/src/bison-flex-output/parser.c.o  -o cilisp  -lm 

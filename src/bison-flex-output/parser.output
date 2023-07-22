@@ -1,0 +1,512 @@
+State 8 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: s_expr EOL
+    2        | s_expr EOFT
+    3        | EOL
+    4        | EOFT
+
+    5 s_expr: f_expr
+    6       | number
+    7       | SYMBOL
+    8       | LPAREN let_section s_expr RPAREN
+    9       | LPAREN cond s_expr s_expr s_expr RPAREN
+   10       | QUIT
+   11       | error
+
+   12 number: INT
+   13       | FLOAT
+
+   14 f_expr: LPAREN FUNC s_expr_section RPAREN
+
+   15 s_expr_section: s_expr_list
+   16               | %empty
+
+   17 s_expr_list: s_expr
+   18            | s_expr s_expr_list
+
+   19 let_section: LPAREN let let_list RPAREN
+   20            | %empty
+
+   21 let_list: let_elem
+   22         | let_elem let_list
+
+   23 let_elem: LPAREN SYMBOL s_expr RPAREN
+   24         | LPAREN TYPE SYMBOL s_expr RPAREN
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256) 11
+    FUNC <ival> (258) 14
+    INT <dval> (259) 12
+    FLOAT <dval> (260) 13
+    SYMBOL <cval> (261) 7 23 24
+    TYPE <nval> (262) 24
+    QUIT (263) 10
+    EOL (264) 1 3
+    EOFT (265) 2 4
+    LPAREN (266) 8 9 14 19 23 24
+    RPAREN (267) 8 9 14 19 23 24
+    let (268) 19
+    cond (269) 9
+
+
+Nonterminals, with rules where they appear
+
+    $accept (15)
+        on left: 0
+    program (16)
+        on left: 1 2 3 4
+        on right: 0
+    s_expr <astNode> (17)
+        on left: 5 6 7 8 9 10 11
+        on right: 1 2 8 9 17 18 23 24
+    number <astNode> (18)
+        on left: 12 13
+        on right: 6
+    f_expr <astNode> (19)
+        on left: 14
+        on right: 5
+    s_expr_section <astNode> (20)
+        on left: 15 16
+        on right: 14
+    s_expr_list <astNode> (21)
+        on left: 17 18
+        on right: 15 18
+    let_section <tableNode> (22)
+        on left: 19 20
+        on right: 8
+    let_list <tableNode> (23)
+        on left: 21 22
+        on right: 19 22
+    let_elem <tableNode> (24)
+        on left: 23 24
+        on right: 21 22
+
+
+State 0
+
+    0 $accept: . program $end
+
+    error   shift, and go to state 1
+    INT     shift, and go to state 2
+    FLOAT   shift, and go to state 3
+    SYMBOL  shift, and go to state 4
+    QUIT    shift, and go to state 5
+    EOL     shift, and go to state 6
+    EOFT    shift, and go to state 7
+    LPAREN  shift, and go to state 8
+
+    program  go to state 9
+    s_expr   go to state 10
+    number   go to state 11
+    f_expr   go to state 12
+
+
+State 1
+
+   11 s_expr: error .
+
+    $default  reduce using rule 11 (s_expr)
+
+
+State 2
+
+   12 number: INT .
+
+    $default  reduce using rule 12 (number)
+
+
+State 3
+
+   13 number: FLOAT .
+
+    $default  reduce using rule 13 (number)
+
+
+State 4
+
+    7 s_expr: SYMBOL .
+
+    $default  reduce using rule 7 (s_expr)
+
+
+State 5
+
+   10 s_expr: QUIT .
+
+    $default  reduce using rule 10 (s_expr)
+
+
+State 6
+
+    3 program: EOL .
+
+    $default  reduce using rule 3 (program)
+
+
+State 7
+
+    4 program: EOFT .
+
+    $default  reduce using rule 4 (program)
+
+
+State 8
+
+    8 s_expr: LPAREN . let_section s_expr RPAREN
+    9       | LPAREN . cond s_expr s_expr s_expr RPAREN
+   14 f_expr: LPAREN . FUNC s_expr_section RPAREN
+
+    FUNC    shift, and go to state 13
+    LPAREN  shift, and go to state 14
+    cond    shift, and go to state 15
+
+    LPAREN    [reduce using rule 20 (let_section)]
+    $default  reduce using rule 20 (let_section)
+
+    let_section  go to state 16
+
+
+State 9
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 17
+
+
+State 10
+
+    1 program: s_expr . EOL
+    2        | s_expr . EOFT
+
+    EOL   shift, and go to state 18
+    EOFT  shift, and go to state 19
+
+
+State 11
+
+    6 s_expr: number .
+
+    $default  reduce using rule 6 (s_expr)
+
+
+State 12
+
+    5 s_expr: f_expr .
+
+    $default  reduce using rule 5 (s_expr)
+
+
+State 13
+
+   14 f_expr: LPAREN FUNC . s_expr_section RPAREN
+
+    error   shift, and go to state 1
+    INT     shift, and go to state 2
+    FLOAT   shift, and go to state 3
+    SYMBOL  shift, and go to state 4
+    QUIT    shift, and go to state 5
+    LPAREN  shift, and go to state 8
+
+    RPAREN  reduce using rule 16 (s_expr_section)
+
+    s_expr          go to state 20
+    number          go to state 11
+    f_expr          go to state 12
+    s_expr_section  go to state 21
+    s_expr_list     go to state 22
+
+
+State 14
+
+   19 let_section: LPAREN . let let_list RPAREN
+
+    let  shift, and go to state 23
+
+
+State 15
+
+    9 s_expr: LPAREN cond . s_expr s_expr s_expr RPAREN
+
+    error   shift, and go to state 1
+    INT     shift, and go to state 2
+    FLOAT   shift, and go to state 3
+    SYMBOL  shift, and go to state 4
+    QUIT    shift, and go to state 5
+    LPAREN  shift, and go to state 8
+
+    s_expr  go to state 24
+    number  go to state 11
+    f_expr  go to state 12
+
+
+State 16
+
+    8 s_expr: LPAREN let_section . s_expr RPAREN
+
+    error   shift, and go to state 1
+    INT     shift, and go to state 2
+    FLOAT   shift, and go to state 3
+    SYMBOL  shift, and go to state 4
+    QUIT    shift, and go to state 5
+    LPAREN  shift, and go to state 8
+
+    s_expr  go to state 25
+    number  go to state 11
+    f_expr  go to state 12
+
+
+State 17
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+State 18
+
+    1 program: s_expr EOL .
+
+    $default  reduce using rule 1 (program)
+
+
+State 19
+
+    2 program: s_expr EOFT .
+
+    $default  reduce using rule 2 (program)
+
+
+State 20
+
+   17 s_expr_list: s_expr .
+   18            | s_expr . s_expr_list
+
+    error   shift, and go to state 1
+    INT     shift, and go to state 2
+    FLOAT   shift, and go to state 3
+    SYMBOL  shift, and go to state 4
+    QUIT    shift, and go to state 5
+    LPAREN  shift, and go to state 8
+
+    RPAREN  reduce using rule 17 (s_expr_list)
+
+    s_expr       go to state 20
+    number       go to state 11
+    f_expr       go to state 12
+    s_expr_list  go to state 26
+
+
+State 21
+
+   14 f_expr: LPAREN FUNC s_expr_section . RPAREN
+
+    RPAREN  shift, and go to state 27
+
+
+State 22
+
+   15 s_expr_section: s_expr_list .
+
+    $default  reduce using rule 15 (s_expr_section)
+
+
+State 23
+
+   19 let_section: LPAREN let . let_list RPAREN
+
+    LPAREN  shift, and go to state 28
+
+    let_list  go to state 29
+    let_elem  go to state 30
+
+
+State 24
+
+    9 s_expr: LPAREN cond s_expr . s_expr s_expr RPAREN
+
+    error   shift, and go to state 1
+    INT     shift, and go to state 2
+    FLOAT   shift, and go to state 3
+    SYMBOL  shift, and go to state 4
+    QUIT    shift, and go to state 5
+    LPAREN  shift, and go to state 8
+
+    s_expr  go to state 31
+    number  go to state 11
+    f_expr  go to state 12
+
+
+State 25
+
+    8 s_expr: LPAREN let_section s_expr . RPAREN
+
+    RPAREN  shift, and go to state 32
+
+
+State 26
+
+   18 s_expr_list: s_expr s_expr_list .
+
+    $default  reduce using rule 18 (s_expr_list)
+
+
+State 27
+
+   14 f_expr: LPAREN FUNC s_expr_section RPAREN .
+
+    $default  reduce using rule 14 (f_expr)
+
+
+State 28
+
+   23 let_elem: LPAREN . SYMBOL s_expr RPAREN
+   24         | LPAREN . TYPE SYMBOL s_expr RPAREN
+
+    SYMBOL  shift, and go to state 33
+    TYPE    shift, and go to state 34
+
+
+State 29
+
+   19 let_section: LPAREN let let_list . RPAREN
+
+    RPAREN  shift, and go to state 35
+
+
+State 30
+
+   21 let_list: let_elem .
+   22         | let_elem . let_list
+
+    LPAREN  shift, and go to state 28
+
+    $default  reduce using rule 21 (let_list)
+
+    let_list  go to state 36
+    let_elem  go to state 30
+
+
+State 31
+
+    9 s_expr: LPAREN cond s_expr s_expr . s_expr RPAREN
+
+    error   shift, and go to state 1
+    INT     shift, and go to state 2
+    FLOAT   shift, and go to state 3
+    SYMBOL  shift, and go to state 4
+    QUIT    shift, and go to state 5
+    LPAREN  shift, and go to state 8
+
+    s_expr  go to state 37
+    number  go to state 11
+    f_expr  go to state 12
+
+
+State 32
+
+    8 s_expr: LPAREN let_section s_expr RPAREN .
+
+    $default  reduce using rule 8 (s_expr)
+
+
+State 33
+
+   23 let_elem: LPAREN SYMBOL . s_expr RPAREN
+
+    error   shift, and go to state 1
+    INT     shift, and go to state 2
+    FLOAT   shift, and go to state 3
+    SYMBOL  shift, and go to state 4
+    QUIT    shift, and go to state 5
+    LPAREN  shift, and go to state 8
+
+    s_expr  go to state 38
+    number  go to state 11
+    f_expr  go to state 12
+
+
+State 34
+
+   24 let_elem: LPAREN TYPE . SYMBOL s_expr RPAREN
+
+    SYMBOL  shift, and go to state 39
+
+
+State 35
+
+   19 let_section: LPAREN let let_list RPAREN .
+
+    $default  reduce using rule 19 (let_section)
+
+
+State 36
+
+   22 let_list: let_elem let_list .
+
+    $default  reduce using rule 22 (let_list)
+
+
+State 37
+
+    9 s_expr: LPAREN cond s_expr s_expr s_expr . RPAREN
+
+    RPAREN  shift, and go to state 40
+
+
+State 38
+
+   23 let_elem: LPAREN SYMBOL s_expr . RPAREN
+
+    RPAREN  shift, and go to state 41
+
+
+State 39
+
+   24 let_elem: LPAREN TYPE SYMBOL . s_expr RPAREN
+
+    error   shift, and go to state 1
+    INT     shift, and go to state 2
+    FLOAT   shift, and go to state 3
+    SYMBOL  shift, and go to state 4
+    QUIT    shift, and go to state 5
+    LPAREN  shift, and go to state 8
+
+    s_expr  go to state 42
+    number  go to state 11
+    f_expr  go to state 12
+
+
+State 40
+
+    9 s_expr: LPAREN cond s_expr s_expr s_expr RPAREN .
+
+    $default  reduce using rule 9 (s_expr)
+
+
+State 41
+
+   23 let_elem: LPAREN SYMBOL s_expr RPAREN .
+
+    $default  reduce using rule 23 (let_elem)
+
+
+State 42
+
+   24 let_elem: LPAREN TYPE SYMBOL s_expr . RPAREN
+
+    RPAREN  shift, and go to state 43
+
+
+State 43
+
+   24 let_elem: LPAREN TYPE SYMBOL s_expr RPAREN .
+
+    $default  reduce using rule 24 (let_elem)
