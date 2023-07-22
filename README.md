@@ -1,4 +1,7 @@
-# STUDENT UPDATE
+## CI-LISP - Aaron Urrea
+ - Course: COMP-232 Programming Languages
+ - Professors: Anna Bieszczad
+
 ## Checklist
 
 * Task 1: (50 Pts)
@@ -21,25 +24,6 @@
   * Debugged:   ✓
   * Valgrind:   ✓
   * Documented: ✓
-* Task 5: (15 Pts)
-  * Completed:  X
-  * Debugged:   X
-  * Valgrind:   X
-  * Documented: X
-
-## Reasoning and Final Note
-        I was unable to complete Task 5 due to time issues, and a hectic final week in regards to both personal issues as well as academic issues. 
-    The broken, unfinished Task 5 sits uncommitted, as I did not make much progress on it to begin with and I would much rather have a finished, 
-    documented and bug free (as far as I am aware) Task 4 and accept the 85%, if the work is up to that level of course. I would absolutely love to 
-    hear any criticism and/or advice for this project, as this is probably my first HIGH level programming project, and I am always ready to grow as 
-    both a student, and a person!
-
-        I thank you both, Professor Bieszczad and Professor McIntyre, for this great learning experience. I have learned so much from this class and 
-    I believe I have a much better on grasp computer science as a whole than I did before. I feel I am a better programmer, and I have nobody else to thank 
-    but the two of you. I hope to have a future class with you both again!
-
-    Have a great summer!
-        Aaron Urrea
 
 # CI LISP
 
@@ -68,7 +52,6 @@ Tasks **must** be completed in order. A progress goal that states "Complete task
 * `4/14` : Complete task 1.
 * `5/03` : Complete task 2.
 * `5/10` : Complete task 4.
-* `5/21` : Complete the project.
 
 ## Submission Requirements
 
@@ -107,12 +90,9 @@ Click the hyperlinked task names to open their instructions.
 
 [TASK 4](./instructions/task_4.md) : Conditionals, comparisons, read, random and print
 
-[TASK 5](./instructions/task_5.md) : Composable, recursion-capable user-defined functions
-
 ## Point Breakdown
 
 * Task 1 : 50 points
 * Task 2 : 15 points
 * Task 3 : 5 points
 * Task 4 : 15 points
-* Task 5 : 15 points
